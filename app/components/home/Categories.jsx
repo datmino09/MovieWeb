@@ -1,21 +1,42 @@
+"use client"
+
 import React from 'react'
+import { useCategories } from '../../../lib/apiCategories'
 
 export default function Categories() {
-    const categories = [
-    "Hành động", "Hài kịch", "Kinh dị", "Tình cảm", "Sci-Fi", "Hoạt hình"
-  ];
+  const { data, isLoading, isError, error } = useCategories();
+  const items = data?.data?.items || [];
+  console.log('Categories data:', data);
+  if (isLoading) {
+    return (
+      <section className="container mx-auto px-4 mb-12">
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="px-6 py-2 bg-gray-800 rounded-full animate-pulse w-24 h-8" />
+        </div>
+      </section>
+    )
+  }
+
+  if (isError) {
+    return (
+      <section className="container mx-auto px-4 mb-12">
+        <div className="text-red-400">Lỗi tải thể loại: {error?.message}</div>
+      </section>
+    )
+  }
+
   return (
     <section className="container mx-auto px-4 mb-12">
-          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-            {categories.map((cat, idx) => (
-              <button 
-                key={idx}
-                className="px-6 py-2 bg-gray-800 hover:bg-red-600 rounded-full whitespace-nowrap transition-colors font-semibold"
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </section>
+      <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        {items.map((cat) => (
+          <button
+            key={cat._id}
+            className="px-6 py-2 bg-gray-800 hover:bg-red-600 rounded-full whitespace-nowrap transition-colors font-semibold"
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+    </section>
   )
 }

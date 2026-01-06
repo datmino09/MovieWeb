@@ -1,13 +1,17 @@
+"use client";
 import React from 'react';
 import { Play, Star } from 'lucide-react';
-
+import { useRouter } from 'next/navigation';
 export default function MovieCard({ movie }) {
+  const router = useRouter();
   return (
-    <div className="group relative cursor-pointer">
+    <div className="group relative cursor-pointer" onClick={() => {
+    router.push(`/play/${movie.slug}`); 
+    }}>
       <div className="relative aspect-[2/3] overflow-hidden rounded-lg bg-gray-800">
         <img
-          src={movie.poster}
-          alt={movie.title}
+          src={process.env.NEXT_PUBLIC_IMAGE_BASE + movie.thumb_url}
+          alt={movie.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -19,13 +23,14 @@ export default function MovieCard({ movie }) {
           </div>
         </div>
         <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1">
-          <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-          <span className="text-sm font-semibold">{movie.rating}</span>
+        <p>IMDB: </p>
+         
+          <span className="text-sm font-semibold">{movie.imdb?.vote_average}</span> <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" /> 
         </div>
       </div>
       <div className="mt-3">
         <h3 className="font-semibold text-white truncate group-hover:text-red-500 transition-colors">
-          {movie.title}
+          {movie.name}
         </h3>
         <p className="text-sm text-gray-400">{movie.year}</p>
       </div>
