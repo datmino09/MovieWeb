@@ -24,22 +24,22 @@ export default function NewReleases() {
   }
   return (
     <section className="container mx-auto px-4 mb-16">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <Clock className="w-7 h-7 text-red-600" />
-              <h2 className="text-3xl font-bold">Sắp chiếu</h2>
-            </div>
-            <button className="flex items-center gap-2 text-red-500 hover:text-red-400 font-semibold">
-              Xem tất cả
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {newReleases.map(movie => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
-</section>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <Clock className="w-7 h-7 text-red-600" />
+          <h2 className="text-3xl font-bold">Sắp chiếu</h2>
+        </div>
+        <button className="flex items-center gap-2 text-red-500 hover:text-red-400 font-semibold">
+          Xem tất cả
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {newReleases.map(movie => (
+          <MovieCard key={movie._id} movie={movie} />
+        ))}
+      </div>
+    </section>
   )
 }

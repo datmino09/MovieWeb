@@ -39,7 +39,7 @@ export default function TrendingMovies() {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {trendingMovies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCard key={movie._id} movie={movie} />
         ))}
       </div>
     </section>
