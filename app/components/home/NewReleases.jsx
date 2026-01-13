@@ -29,10 +29,10 @@ export default function NewReleases() {
           <Clock className="w-7 h-7 text-red-600" />
           <h2 className="text-3xl font-bold">Sắp chiếu</h2>
         </div>
-        <button className="flex items-center gap-2 text-red-500 hover:text-red-400 font-semibold">
+        {/* <button className="flex items-center gap-2 text-red-500 hover:text-red-400 font-semibold">
           Xem tất cả
           <ChevronRight className="w-5 h-5" />
-        </button>
+        </button> */}
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">

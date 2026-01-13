@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useMoviesBySearch } from '@/lib/apiMovies';
 import Search from './Search';
 import MobieSearch from './MobieSearch';
+import DesktopMenu from './DesktopMenu'
+import MobileMenu from './MobileMenu';
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
@@ -139,64 +141,11 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6 mt-4">
-          <button
-            onClick={() => router.push('/')}
-            className="flex items-center gap-2 text-red-500 font-semibold"
-          >
-            <Home className="w-5 h-5" />
-            Trang chủ
-          </button>
-          <button className="flex items-center gap-2 hover:text-red-500 transition-colors">
-            <TrendingUp className="w-5 h-5" />
-            Xu hướng
-          </button>
-          <button className="flex items-center gap-2 hover:text-red-500 transition-colors">
-            <Grid className="w-5 h-5" />
-            Thể loại
-          </button>
-          <button className="flex items-center gap-2 hover:text-red-500 transition-colors">
-            <Clock className="w-5 h-5" />
-            Mới cập nhật
-          </button>
-        </nav>
+        <DesktopMenu />
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden flex flex-col gap-4 mt-4 pb-4 border-t border-gray-800 pt-4 animate-in slide-in-from-top-2">
-            <button
-              onClick={() => {
-                router.push('/');
-                setIsMobileMenuOpen(false);
-              }}
-              className="flex items-center gap-3 text-red-500 font-semibold p-2 hover:bg-gray-800 rounded-lg"
-            >
-              <Home className="w-5 h-5" />
-              Trang chủ
-            </button>
-            <button className="flex items-center gap-3 hover:text-red-500 transition-colors p-2 hover:bg-gray-800 rounded-lg text-gray-300">
-              <TrendingUp className="w-5 h-5" />
-              Xu hướng
-            </button>
-            <button className="flex items-center gap-3 hover:text-red-500 transition-colors p-2 hover:bg-gray-800 rounded-lg text-gray-300">
-              <Grid className="w-5 h-5" />
-              Thể loại
-            </button>
-            <button className="flex items-center gap-3 hover:text-red-500 transition-colors p-2 hover:bg-gray-800 rounded-lg text-gray-300">
-              <Clock className="w-5 h-5" />
-              Mới cập nhật
-            </button>
-            <div className="border-t border-gray-800 pt-4 mt-2 flex flex-col gap-3">
-              <button className="flex items-center gap-3 hover:text-red-500 transition-colors p-2 hover:bg-gray-800 rounded-lg text-gray-300">
-                <Bookmark className="w-5 h-5" />
-                Danh sách
-              </button>
-              <button className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2 w-full">
-                <User className="w-5 h-5" />
-                Đăng nhập
-              </button>
-            </div>
-          </nav>
+          <MobileMenu setIsMobileMenuOpen={setIsMobileMenuOpen} />
         )}
       </div>
 

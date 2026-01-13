@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '@/app/components/part/header/Header';
 import Footer from '@/app/components/part/Footer';
-import Category from '@/app/page/Category';
+import List from '@/app/page/List';
 
-export default async function CategoryPage({ params }) {
+export default async function ListPage({ params }) {
     const { slug } = await params;
 
     return (
         <>
             <Header />
-            <Category slug={slug} />
+            <List slug={slug} />
             <Footer />
         </>
     );
