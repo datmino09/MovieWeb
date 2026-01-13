@@ -55,7 +55,8 @@ export default function Play({slug}) {
   const comments = [
     { id: 1, user: "Nguyễn Văn A", avatar: "👤", time: "2 giờ trước", text: "Phim hay quá!", likes: 24 },
     { id: 2, user: "Trần Thị B", avatar: "👤", time: "5 giờ trước", text: "Diễn xuất tuyệt vời!", likes: 15 },
-    { id: 3, user: "Lê Văn C", avatar: "👤", time: "1 ngày trước", text: "Cốt truyện hấp dẫn", likes: 42 }
+    { id: 3, user: "Lê Văn C", avatar: "👤", time: "1 ngày trước", text: "Cốt truyện hấp dẫn", likes: 42 },
+    { id: 4, user: "Nguyễn Thị Yến Vy", avatar: "👤", time: "100 ngày trước", text: "iu TDat", likes: 999 }
   ];
 
   return (

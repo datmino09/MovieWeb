@@ -3,7 +3,7 @@ import {ChevronLeft, ChevronRight} from 'lucide-react';
 export default function EpisodeNavigation({movie, currentServer, currentEpisode, setCurrentEpisode }) {
   return (
     <div>
-      {movie.type === 'series' && movie.episodes[currentServer]?.server_data.length > 0 && (
+      {movie.type !== "single"  && (
           <div className="bg-gray-900 border-b border-gray-800">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
               <button 

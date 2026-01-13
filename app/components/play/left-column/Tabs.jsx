@@ -13,7 +13,7 @@ export default function Tabs({ activeTab, setActiveTab, movie, currentServer, co
           >
             Thông tin
           </button>
-          {movie.type === 'series' && movie.episodes[currentServer]?.server_data.length > 0 && (
+          {movie.type !== "single" && (
             <button
               onClick={() => setActiveTab('episodes')}
               className={`pb-4 font-semibold transition-colors ${activeTab === 'episodes'
