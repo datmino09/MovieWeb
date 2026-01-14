@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { setLoading } from '@/lib/navigationLoaderStore'
 import { useCategories } from '../../../lib/apiCategories'
 import { Film, Grid, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react'
 
@@ -86,6 +87,7 @@ export default function Categories() {
               <Link
                 key={cat._id}
                 href={`/category/${cat.slug}`}
+                onClick={() => setLoading(true)}
                 className="group relative overflow-hidden bg-gray-800 hover:bg-gradient-to-br hover:from-red-600 hover:to-red-700 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-600/20"
               >
                 <div className="p-4 text-center">
@@ -140,6 +142,7 @@ export default function Categories() {
               <Link
                 key={cat._id}
                 href={`/category/${cat.slug}`}
+                onClick={() => setLoading(true)}
                 className="group relative overflow-hidden bg-gray-800 hover:bg-gradient-to-br hover:from-red-600 hover:to-red-700 rounded-lg transition-all duration-300 active:scale-95"
               >
                 <div className="p-3 text-center">

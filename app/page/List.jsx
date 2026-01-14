@@ -37,7 +37,7 @@ export default function List({ slug, page: pageProp }) {
 
     return (
         <div>
-            <main className="min-h-screen pt-36 pb-16">
+            <main className="min-h-screen pt-36 pb-16 bg-black">
                 <section className="container mx-auto px-4">
                     <div className="flex items-center gap-3 mb-8">
                         <Clock className="w-7 h-7 text-red-600" />

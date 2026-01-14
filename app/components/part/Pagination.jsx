@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { setLoading } from '@/lib/navigationLoaderStore';
 
 // pagination: { totalItems, totalItemsPerPage, currentPage, pageRanges }
 export default function Pagination({ pagination, basePath = '/', pageParam = 'page' }) {
@@ -30,14 +31,14 @@ export default function Pagination({ pagination, basePath = '/', pageParam = 'pa
       <ul className="inline-flex items-center space-x-1">
         {cur > 1 && (
           <li>
-            <Link href={pageHref(cur - 1)} className="px-3 py-1 border rounded-l hover:bg-gray-100">Prev</Link>
+            <Link href={pageHref(cur - 1)} onClick={() => setLoading(true)} className="px-3 py-1 border rounded-l hover:bg-gray-100">Prev</Link>
           </li>
         )}
 
         {start > 1 && (
           <>
             <li>
-              <Link href={pageHref(1)} className="px-3 py-1 border rounded hover:bg-gray-100">1</Link>
+              <Link href={pageHref(1)} onClick={() => setLoading(true)} className="px-3 py-1 border rounded hover:bg-gray-100">1</Link>
             </li>
             {start > 2 && <li className="px-2">...</li>}
           </>
@@ -47,6 +48,7 @@ export default function Pagination({ pagination, basePath = '/', pageParam = 'pa
           <li key={p}>
             <Link
               href={pageHref(p)}
+              onClick={() => setLoading(true)}
               className={`px-3 py-1 border rounded ${p === cur ? 'bg-red-600 text-white' : 'hover:bg-gray-100'}`}>
               {p}
             </Link>
@@ -57,14 +59,14 @@ export default function Pagination({ pagination, basePath = '/', pageParam = 'pa
           <>
             {end < totalPages - 1 && <li className="px-2">...</li>}
             <li>
-              <Link href={pageHref(totalPages)} className="px-3 py-1 border rounded hover:bg-gray-100">{totalPages}</Link>
+              <Link href={pageHref(totalPages)} onClick={() => setLoading(true)} className="px-3 py-1 border rounded hover:bg-gray-100">{totalPages}</Link>
             </li>
           </>
         )}
 
         {cur < totalPages && (
           <li>
-            <Link href={pageHref(cur + 1)} className="px-3 py-1 border rounded-r hover:bg-gray-100">Next</Link>
+            <Link href={pageHref(cur + 1)} onClick={() => setLoading(true)} className="px-3 py-1 border rounded-r hover:bg-gray-100">Next</Link>
           </li>
         )}
       </ul>

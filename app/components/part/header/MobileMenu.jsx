@@ -1,4 +1,5 @@
 import { useRouter, usePathname } from 'next/navigation';
+import { setLoading } from '@/lib/navigationLoaderStore';
 import { Home, Tv, Film, Clapperboard, Bookmark, User } from 'lucide-react';
 
 export default function MobileMenu({ setIsMobileMenuOpen }) {
@@ -12,6 +13,7 @@ export default function MobileMenu({ setIsMobileMenuOpen }) {
   };
 
   const handleNavigation = (path) => {
+    setLoading(true);
     router.push(path);
     setIsMobileMenuOpen(false);
   };

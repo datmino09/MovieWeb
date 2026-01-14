@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import React from 'react'
 import { Film, Search as SearchIcon, Bookmark, User, Home, TrendingUp, Grid, Star, Play, Clock, X, Loader2, Menu } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { setLoading } from '@/lib/navigationLoaderStore';
 import { useMoviesBySearch } from '@/lib/apiMovies';
 import Search from './Search';
 import MobieSearch from './MobieSearch';
@@ -53,6 +54,7 @@ export default function Header() {
   }, []);
 
   const handleMovieClick = (slug) => {
+    setLoading(true);
     router.push(`/play/${slug}`);
     setShowResults(false);
     setSearchQuery('');
@@ -72,7 +74,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => router.push('/')}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => { setLoading(true); router.push('/'); }}>
             <Film className="w-8 h-8 text-red-600" />
             <span className="text-2xl font-bold">Movie<span className="text-red-600">Hub</span></span>
           </div>
