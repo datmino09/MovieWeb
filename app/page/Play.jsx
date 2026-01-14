@@ -7,10 +7,10 @@ import ServerSelection from '../components/play/ServerSelection';
 import EpisodeNavigation from '../components/play/EpisodeNavigation';
 import InfoMovie from '../components/play/left-column/InfoMovie';
 import Sidebar from '../components/play/right-column/Sidebar';
-export default function Play({slug}) {
+export default function Play({ slug }) {
   const [currentEpisode, setCurrentEpisode] = useState(0);
   const [currentServer, setCurrentServer] = useState(0);
-  const {data, isLoading, isError, error} = useMoviesDetail(slug);
+  const { data, isLoading, isError, error } = useMoviesDetail(slug);
   const movie = data?.data?.item;
   if (isLoading) {
     return (
@@ -37,6 +37,19 @@ export default function Play({slug}) {
 
   // Get current video URL
   const getCurrentVideoUrl = () => {
+    if ((movie.episode_current === "Trailer" || movie.episodes?.[0]?.server_data?.[0]?.slug === "") && movie.trailer_url) {
+      let url = movie.trailer_url;
+
+      if (url.includes('youtube.com/watch?v=')) {
+        const videoId = url.split('v=')[1]?.split('&')[0];
+        return `https://www.youtube.com/embed/${videoId}`;
+      } else if (url.includes('youtu.be/')) {
+        const videoId = url.split('youtu.be/')[1]?.split('?')[0];
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+      return url;
+    }
+
     if (movie.episodes[currentServer]?.server_data[currentEpisode]) {
       return movie.episodes[currentServer].server_data[currentEpisode].link_embed;
     }
@@ -68,8 +81,8 @@ export default function Play({slug}) {
         <ServerSelection movie={movie} currentServer={currentServer} setCurrentServer={setCurrentServer} setCurrentEpisode={setCurrentEpisode} />
 
         {/* Episode Navigation */}
-        <EpisodeNavigation 
-          movie={movie} 
+        <EpisodeNavigation
+          movie={movie}
           currentServer={currentServer}
           currentEpisode={currentEpisode}
           setCurrentEpisode={setCurrentEpisode}
@@ -80,7 +93,7 @@ export default function Play({slug}) {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column - Movie Info */}
-          <InfoMovie movie={movie} currentServer={currentServer} comments={comments} currentEpisode={currentEpisode} setCurrentEpisode={setCurrentEpisode}/>
+          <InfoMovie movie={movie} currentServer={currentServer} comments={comments} currentEpisode={currentEpisode} setCurrentEpisode={setCurrentEpisode} />
           {/* Right Column - Sidebar */}
           <Sidebar relatedMovies={relatedMovies} movie={movie} />
         </div>

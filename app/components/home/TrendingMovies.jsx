@@ -1,7 +1,7 @@
 import React from "react";
 import { TrendingUp, ChevronRight } from "lucide-react";
 import { useMovies } from "../../../lib/apiMovies";
-import MovieCard from "./MovieCard";
+import MovieCard from "../part/MovieCard";
 export default function TrendingMovies() {
   const { data, isLoading, isError, error } = useMovies();
   const trendingMovies = data?.data?.items || [];

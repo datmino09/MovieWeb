@@ -1,6 +1,6 @@
 import React from 'react'
 import { Clock, ChevronRight } from 'lucide-react';
-import MovieCard from './MovieCard';
+import MovieCard from '../part/MovieCard';
 import { useMoviesRelease } from '@/lib/apiMovies';
 export default function NewReleases() {
   const { data, isLoading, isError, error } = useMoviesRelease();

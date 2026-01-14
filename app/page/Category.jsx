@@ -1,6 +1,6 @@
 'use client';
 import React from 'react'
-import MovieCard from '@/app/components/home/MovieCard';
+import MovieCard from '@/app/components/part/MovieCard';
 import { useMoviesByCategory } from '@/lib/apiMovies';
 import Pagination from '@/app/components/part/Pagination';
 import { Clock } from 'lucide-react';
@@ -10,12 +10,12 @@ export default function Category({ slug, page: pageProp }) {
   const searchParams = useSearchParams();
   const pageFromUrl = searchParams?.get('page');
   const page = pageProp ?? (pageFromUrl ? Number(pageFromUrl) : undefined);
-  const {data, isLoading, isError, error} = useMoviesByCategory(slug, page);
-    console
-    const movies = data?.data?.items || [];
-    const title = data?.data?.seoOnPage?.titleHead;
-    const pagination = data?.data?.params?.pagination;
-    const basePath = `/category/${slug}`; 
+  const { data, isLoading, isError, error } = useMoviesByCategory(slug, page);
+  console
+  const movies = data?.data?.items || [];
+  const title = data?.data?.seoOnPage?.titleHead;
+  const pagination = data?.data?.params?.pagination;
+  const basePath = `/category/${slug}`;
 
   if (isLoading) {
     return (
@@ -35,24 +35,24 @@ export default function Category({ slug, page: pageProp }) {
     );
   }
 
-    
+
   return (
     <div>
       <main className="min-h-screen pt-36 pb-16">
-                <section className="container mx-auto px-4">
-                    <div className="flex items-center gap-3 mb-8">
-                        <Clock className="w-7 h-7 text-red-600" />
-                        <h1 className="text-3xl font-bold">{title}</h1>
-                    </div>
+        <section className="container mx-auto px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <Clock className="w-7 h-7 text-red-600" />
+            <h1 className="text-3xl font-bold">{title}</h1>
+          </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-                        {movies.map((movie) => (
-                            <MovieCard key={movie._id} movie={movie} />
-                        ))}
-                    </div>
-                    <Pagination pagination={pagination} basePath={basePath} />
-                </section>
-            </main>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+            {movies.map((movie) => (
+              <MovieCard key={movie._id} movie={movie} />
+            ))}
+          </div>
+          <Pagination pagination={pagination} basePath={basePath} />
+        </section>
+      </main>
     </div>
   )
 }

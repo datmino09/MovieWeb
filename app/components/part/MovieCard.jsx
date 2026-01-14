@@ -6,7 +6,7 @@ export default function MovieCard({ movie }) {
   const router = useRouter();
   return (
     <div className="group relative cursor-pointer" onClick={() => {
-    router.push(`/play/${movie.slug}`); 
+      router.push(`/play/${movie.slug}`);
     }}>
       <div className="relative aspect-[2/3] overflow-hidden rounded-lg bg-gray-800">
         <img
@@ -22,10 +22,32 @@ export default function MovieCard({ movie }) {
             </div>
           </div>
         </div>
+        <div className="absolute top-2 left-2 flex flex-col gap-1">
+          {movie.episode_current === "Trailer" ? (
+            <span className="bg-blue-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider shadow-lg">
+              Trailer
+            </span>
+          ) : (
+            <>
+              {movie.quality && (
+                <span className="bg-red-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider shadow-lg">
+                  {movie.quality}
+                </span>
+              )}
+            </>
+          )}
+
+          {movie.lang && (
+            <span className="bg-yellow-500 text-black px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider shadow-lg">
+              {movie.lang}
+            </span>
+          )}
+        </div>
+
         <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm px-2 py-1 rounded flex items-center gap-1">
-        <p>IMDB: </p>
-         
-          <span className="text-sm font-semibold">{movie.imdb?.vote_average}</span> <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" /> 
+          <p className="text-xs text-gray-300">IMDB:</p>
+
+          <span className="text-sm font-semibold text-white">{movie.imdb?.vote_average || 'N/A'}</span> <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
         </div>
       </div>
       <div className="mt-3">
